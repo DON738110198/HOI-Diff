@@ -44,7 +44,7 @@ class MDM(nn.Module):
         self.normalize_output = kargs.get('normalize_encoder_output', False)
 
         self.cond_mode = kargs.get('cond_mode', 'no_cond')
-        self.cond_mask_prob = kargs.get('cond_mask_prob', 0.)
+        self.cond_mask_prob = kargs.get('cond_mask_prob', 0.) # 这个就是cfg的比例
         self.arch = arch
         self.gru_emb_dim = self.latent_dim if self.arch == 'gru' else 0
         self.input_process = InputProcess(self.data_rep, self.input_feats+self.gru_emb_dim, self.latent_dim)

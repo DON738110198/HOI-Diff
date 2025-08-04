@@ -114,7 +114,7 @@ class SMPLify3D():
         pen_distance = None
         filter_faces = None
         
-        if self.use_collision:
+        if self.use_collision: # false
             from mesh_intersection.bvh_search_tree import BVH
             import mesh_intersection.loss as collisions_loss
             from mesh_intersection.filter_faces import FilterFaces

@@ -75,7 +75,7 @@ class joints2smpl:
         keypoints_3d = torch.Tensor(input_joints).to(self.device).float()
 
         # if idx == 0:
-        if init_params is None:
+        if init_params is None: # here
             pred_betas = self.init_mean_shape
             pred_pose = self.init_mean_pose
             pred_cam_t = self.cam_trans_zero

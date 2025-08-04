@@ -286,9 +286,9 @@ class Text2MotionDatasetV2(data.Dataset):
         self.w_vectorizer = w_vectorizer
         self.max_length = 20
         self.pointer = 0
-        self.max_motion_length = opt.max_motion_length
+        self.max_motion_length = opt.max_motion_length # 196
         min_motion_len = 40
-        self.normal_dim = opt.dim_pose
+        self.normal_dim = opt.dim_pose # 269
 
         data_dict = {}
         id_list = []
@@ -301,7 +301,7 @@ class Text2MotionDatasetV2(data.Dataset):
         length_list = []
         for name in tqdm(id_list):
             try:
-                motion = np.load(pjoin(opt.motion_dir, name + '.npy'))
+                motion = np.load(pjoin(opt.motion_dir, name + '.npy')) # '././dataset/behave_t2m/new_joint_vecs_local'
                 
                 # load obj points----------------
                 obj_name = name.split('_')[2]
@@ -324,8 +324,8 @@ class Text2MotionDatasetV2(data.Dataset):
                                 
                         
 
-                obj_points = obj_points[o_choose]
-                obj_normals = obj_faces[o_choose] 
+                obj_points = obj_points[o_choose] # (512, 3)
+                obj_normals = obj_faces[o_choose]  # (512, 3)
 
 
 
@@ -471,10 +471,10 @@ class Text2MotionDatasetV2(data.Dataset):
         motion = motion[idx:idx+m_length]
 
         
-        if not self.opt.use_global:
+        if not self.opt.use_global: # false
             "Z Normalization"
             motion = np.copy(motion)
-            if len(self.mean) == 269:
+            if len(self.mean) == 269: # here
                 motion[:,:269] = (motion[:, :269] - self.mean[:269]) / self.std[:269]
             else:
                 #  for evaluation of ground truth

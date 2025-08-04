@@ -1,0 +1,2 @@
+../../blender-3.6.23-linux-x64/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=/
+data3/wh/hoi_diffusion_model/other_projects/HOI-Diff/save/behave_enc_512/samples_behave_enc_512_vertices --mode=video --joint_type=HumanML3D

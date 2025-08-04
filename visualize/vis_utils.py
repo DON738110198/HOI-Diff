@@ -1,4 +1,4 @@
-from model.rotation2xyz import Rotation2xyz
+from HOI_Diff.model.rotation2xyz import Rotation2xyz
 import numpy as np
 from trimesh import Trimesh
 import trimesh
@@ -29,7 +29,7 @@ class npy2obj:
 
         if self.nfeats == 3:
             print(f'Running SMPLify For sample [{sample_idx}], repetition [{rep_idx}], it may take a few minutes.')
-            motion_tensor, opt_dict = self.j2s.joint2smpl(self.motions['motion'][self.absl_idx].transpose(2, 0, 1))  # [nframes, njoints, 3]
+            motion_tensor, opt_dict = self.j2s.joint2smpl(self.motions['motion'][self.absl_idx].transpose(2, 0, 1))  # [nframes, njoints, 3] [1, 25, 6, 196]
             self.motions['motion'] = motion_tensor.cpu().numpy()
         elif self.nfeats == 6:
             self.motions['motion'] = self.motions['motion'][[self.absl_idx]]
@@ -94,7 +94,7 @@ class npy2obj:
     def save_npy(self, save_path):
         # print(f"motion: { type(self.motions['motion'])} frame : {self.real_num_frames}  vet {type(self.vertices.detach().cpu().numpy())}")
         data_dict = {
-            'motion': self.motions['motion'][0, :, :, :self.real_num_frames],
+            'motion': self.motions['motion'][0, :, :, :self.real_num_frames], # (1, 25, 6, 196) 25个joint，6的前三是trans，后三是rot
             'thetas': self.motions['motion'][0, :-1, :, :self.real_num_frames],
             'root_translation': self.motions['motion'][0, -1, :3, :self.real_num_frames],
             'faces': self.faces,

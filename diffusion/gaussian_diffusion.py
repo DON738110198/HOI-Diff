@@ -773,7 +773,7 @@ class GaussianDiffusion:
 
         for i in indices:
             t = th.tensor([i] * shape[0], device=device)
-            if randomize_class and 'y' in model_kwargs:
+            if randomize_class and 'y' in model_kwargs: # false
                 model_kwargs['y'] = th.randint(low=0, high=model.num_classes,
                                                size=model_kwargs['y'].shape,
                                                device=model_kwargs['y'].device)
@@ -1360,7 +1360,7 @@ class GaussianDiffusion:
             )["output"]
             if self.loss_type == LossType.RESCALED_KL:
                 terms["loss"] *= self.num_timesteps
-        elif self.loss_type == LossType.MSE or self.loss_type == LossType.RESCALED_MSE:
+        elif self.loss_type == LossType.MSE or self.loss_type == LossType.RESCALED_MSE: # here,MSE
             model_output = model(x_t, self._scale_timesteps(t), **model_kwargs)
 
             if self.model_var_type in [

@@ -1,0 +1,1 @@
+xvfb-run -a -s "-screen 0 1920x1080x24" python -m debugpy --listen localhost:60488 --wait-for-client -m train.hoi_diff --save_dir ./save/my_behave_enc_512_2 --dataset behave --save_interval 1000 --num_steps 20000 --arch trans_enc --batch_size 32

@@ -2,7 +2,7 @@ import math
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-plt.rcParams['animation.ffmpeg_path'] = '/shared/centos7/ffmpeg/20190305/bin/ffmpeg'
+plt.rcParams['animation.ffmpeg_path'] = '/home/wh/miniconda3/envs/chois_env/bin/ffmpeg'
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation, FFMpegFileWriter
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
@@ -145,6 +145,7 @@ def plot_3d_motion(save_path, kinematic_tree, joints, obj_points, hc_mask, oc_ma
         ax.set_zticklabels([])
 
     ani = FuncAnimation(fig, update, frames=frame_number, interval=1000 / fps, repeat=False)
-    ani.save(save_path, fps=fps)
+    # ani.save(save_path, fps=fps, writer="ffmpeg", codec="libx265", bitrate=1000, extra_args=["-pix_fmt", "yuv420p"])
+    ani.save(save_path.replace(".mp4", ".gif"), writer="imagemagick", fps=30)
 
     plt.close()

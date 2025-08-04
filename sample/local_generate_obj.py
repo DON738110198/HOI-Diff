@@ -49,6 +49,7 @@ def main():
         elif args.input_text != '':
             out_path += '_' + os.path.basename(args.input_text).replace('.txt', '').replace(' ', '_').replace('.', '')
 
+    print(out_path)
     # this block must be called BEFORE the dataset is loaded
     if args.text_prompt != '':
         texts = [args.text_prompt]
@@ -188,7 +189,7 @@ def main():
             cond_fn=guide_fn_contact,
         )
 
-        sample = data.dataset.t2m_dataset.inv_transform(sample.cpu().permute(0, 2, 3, 1)).float()
+        sample = data.dataset.t2m_dataset.inv_transform(sample.cpu().permute(0, 2, 3, 1)).float() # [10, 269, 1, 196]
 
         sample_obj = sample[..., 263:]
         sample_obj = sample_obj.permute(0, 1, 3, 2)
@@ -198,7 +199,7 @@ def main():
         sample = recover_from_ric(sample, n_joints)
         sample = sample[:,:,:,:n_joints*3]
         sample = sample.reshape(sample.shape[0], sample.shape[1], sample.shape[2], n_joints, 3)
-        sample = sample.view(-1, *sample.shape[2:]).permute(0, 2, 3, 1)
+        sample = sample.view(-1, *sample.shape[2:]).permute(0, 2, 3, 1) # [10, 22, 3, 196]
 
 
         if args.unconstrained:
@@ -208,7 +209,7 @@ def main():
             all_text += model_kwargs['y'][text_key]
 
 
-        all_motions.append(sample.cpu().numpy())
+        all_motions.append(sample.cpu().numpy()) #
         all_lengths.append(model_kwargs['y']['lengths'].cpu().numpy())
         all_motions_obj.append(sample_obj.cpu().numpy())
         all_obj_points.append(model_kwargs['y']['obj_points'].cpu().numpy())
@@ -276,7 +277,7 @@ def main():
             # center the meshes
             center = np.mean(all_vertices, 0)
             all_vertices -= center
-            new_vertices = np.concatenate([all_vertices, vertices[-2:]], 0)
+            # new_vertices = np.concatenate([all_vertices, vertices[-2:]], 0)
 
 
 

@@ -37,7 +37,7 @@ if __name__ == '__main__':
     #     npy2obj.save_ply(os.path.join(results_dir, 'frame{:03d}.ply'.format(frame_i)), frame_i)
     #     npy2obj_object.save_ply(os.path.join(results_dir, 'obj_frame{:03d}.ply'.format(frame_i)), sample_i, frame_i)
 
-    print('Saving SMPL params to [{}]'.format(os.path.abspath(out_npy_path)))
+    print('Saving SMPL params to [{}]'.format(os.path.abspath(out_npy_path)))   
     npy2obj.save_npy(out_npy_path)
     npy2obj_object.save_npy(out_obj_npy_path)
 
