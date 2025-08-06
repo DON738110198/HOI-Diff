@@ -34,7 +34,7 @@ amass_smpl_idx =  range(22)
 
 
 SMPL_MODEL_DIR = "/data3/wh/hoi_diffusion_model/data/body_models/"
-GMM_MODEL_DIR = "./joints2smpl/smpl_models/"
-SMPL_MEAN_FILE = "./joints2smpl/smpl_models/neutral_smpl_mean_params.h5"
+GMM_MODEL_DIR = "/data3/wh/hoi_diffusion_model/HOI_Diff/visualize/joints2smpl/smpl_models"
+SMPL_MEAN_FILE = "/data3/wh/hoi_diffusion_model/HOI_Diff/visualize/joints2smpl/smpl_models/neutral_smpl_mean_params.h5"
 # for collsion 
-Part_Seg_DIR = "./joints2smpl/smpl_models/smplx_parts_segm.pkl"
+Part_Seg_DIR = "/data3/wh/hoi_diffusion_model/HOI_Diff/visualize/joints2smpl/smpl_models/smplx_parts_segm.pkl"

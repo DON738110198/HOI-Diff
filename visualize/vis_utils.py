@@ -1,10 +1,12 @@
-from HOI_Diff.model.rotation2xyz import Rotation2xyz
+import sys
+sys.path.append("/data3/wh/hoi_diffusion_model/HOI_Diff")
+from model.rotation2xyz import Rotation2xyz
 import numpy as np
 from trimesh import Trimesh
 import trimesh
 import os
 import torch
-from visualize.simplify_loc2rot import joints2smpl
+from HOI_Diff.visualize.simplify_loc2rot import joints2smpl
 from scipy.spatial.transform import Rotation
 
 

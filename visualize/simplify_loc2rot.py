@@ -1,6 +1,8 @@
 import numpy as np
 import os
 import torch
+import sys
+sys.path.append("/data3/wh/hoi_diffusion_model/HOI_Diff")
 from visualize.joints2smpl.src import config
 import smplx
 import h5py
